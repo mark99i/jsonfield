@@ -9,7 +9,7 @@ dbhandle = MySQLDatabase(
     os.environ['db_name'],
     host=os.environ.get('db_host', 'localhost'),
     port=int(os.environ.get('db_port', 3306)),
-    user=os.environ.get('db_port', 'root'),
+    user=os.environ.get('db_user', 'root'),
     passwd=os.environ['db_passwd']
 )
 
