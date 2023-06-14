@@ -72,5 +72,10 @@ View and run the file [jsonfield_play.py](https://github.com/mark99i/jsonfield/b
 Before starting, you need to set environment variables to access the database: `db_name`, `db_port`, `db_passwd` 
 and others (`db_host`, `db_port`, `opt_table_temporary`, `opt_json_ensure_ascii`, `opt_json_use_detailed`) as needed
 
+## TODO
+- Implement arrays methods
+- Add method's description
+- Add basic `jpath` checks
+
 ## Limitations
 This library is focused on working with MariaDB and MySQL DBMS and, most likely, will not work with others, since the syntax of SQL functions differs
