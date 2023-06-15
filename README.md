@@ -7,8 +7,8 @@ By default, in Peewee, JSONField is a simple field inherited from TextField with
 in MySQL/MariaDB there are [many methods](https://mariadb.com/kb/en/json-functions/) for working with JSON data that are either not used or 
 need to be implemented yourself. This package is designed to fix this situation.
 
-## Installation (in progress)
-```pip install peeewee-jsonfield```
+## Installation
+```pip install peewee-jsonfield```
 
 ## Using
 
@@ -42,6 +42,12 @@ TestModel.data.jset('$.v_dict_key.nested_variable', 'nested_string').where(TestM
 TestModel.data.jset('$.v_dict_key.nested_list', [1, 2, 3]).where(TestModel.id == 1).execute()
 ```
 
+You can use the SQL method `JSON_EXTRACT` to filter the results:
+```
+obj = TestModel.get_or_none(TestModel.data.jextract('$.v_str') == 'my_new_string')
+objs = TestModel.select().where(TestModel.data.jextract('$.v_int') == 10)
+```
+
 Also, if you already have an object, instead of completely overwriting (`.save()`), you can use the `UPDATE` functions, specifying it as `target`
 and `execute=True` if the request needs to be executed immediately:
 ```
@@ -69,7 +75,7 @@ using the intermediate SQL formatting function `JSON_DETAILED` when saving data 
 ## More examples and try
 View and run the file [jsonfield_play.py](https://github.com/mark99i/jsonfield/blob/master/jsonfield_play.py)
 
-Before starting, you need to set environment variables to access the database: `db_name`, `db_port`, `db_passwd` 
+Before starting, you need to set environment variables to access the database: `db_name`, `db_user`, `db_passwd` 
 and others (`db_host`, `db_port`, `opt_table_temporary`, `opt_json_ensure_ascii`, `opt_json_use_detailed`) as needed
 
 ## TODO
@@ -79,3 +85,5 @@ and others (`db_host`, `db_port`, `opt_table_temporary`, `opt_json_ensure_ascii`
 
 ## Limitations
 This library is focused on working with MariaDB and MySQL DBMS and, most likely, will not work with others, since the syntax of SQL functions differs
+
+To use the `target` parameter, the table must have a row ID with the name `id`

@@ -25,11 +25,11 @@ class TestModel(Model):
 def play():
     print('Connecting to memory db and create table')
     dbhandle.connect()
-    dbhandle.create_tables([TestModel], temporary=os.environ.get('opt_table_temporary', True))
+    dbhandle.create_tables([TestModel], temporary=bool(int(os.environ.get('opt_table_temporary', True))))
 
     # Optional variables for customization JSONField
-    dbhandle.json_ensure_ascii = os.environ.get('opt_json_ensure_ascii', True)
-    dbhandle.json_use_detailed = os.environ.get('opt_json_use_detailed', False)
+    dbhandle.json_ensure_ascii = bool(int(os.environ.get('opt_json_ensure_ascii', True)))
+    dbhandle.json_use_detailed = bool(int(os.environ.get('opt_json_use_detailed', False)))
 
     payload = {
         'v_int': 10,

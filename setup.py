@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='peewee-jsonfield',
-    version='0.0.1',
+    version='0.0.4',
     description='JSONField for Peewee',
     packages=['jsonfield'],
     install_requires=[
